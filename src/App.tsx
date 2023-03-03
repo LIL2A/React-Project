@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import Banner from './Components/Banner/Banner';
+import {Banner} from './Components/Banner/Banner';
 import Footer from './Components/Footer/Footer';
 import Formulario from './Components/Formulario/Formulario';
 import Time from './Components/Time/Time';
+import { IColaborador } from './Shared/Interfaces/IColaborador';
 
 
 
@@ -46,16 +47,17 @@ function App() {
     }
   ]
 
-  const [colaboradores, setColaboradores] = useState([])
+  
+  const [colaboradores, setColaboradores] = useState<IColaborador[]>([])
 
   //função que está lendo os dados inseridos, devido a isso não poderia ser adcionando um colaboradores.push()
-  const aoNovoColaboradorAdicionado = (colaborador) => {
+  const aoNovoColaboradorAdicionado = (colaborador: IColaborador) => {
     setColaboradores([...colaboradores, colaborador])
   }
 
   return (
     <div className='app'>
-      <Banner />
+      <Banner enderecoImagem='./Img/HeaderHeader_total.png' textoAlternativo='Banner principal da página'/>
       <Formulario times={times.map(time => time.nome)} aoColaboradorCadastrado={colaborador => aoNovoColaboradorAdicionado(colaborador)}/>
 
       {times.map(time => <Time 
